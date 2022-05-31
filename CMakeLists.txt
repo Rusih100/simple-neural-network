@@ -8,4 +8,4 @@ include_directories(${PROJECT_SOURCE_DIR}/headers)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/headers/*.h)
 file(GLOB sources ${PROJECT_SOURCE_DIR}/sources/*.cpp)
 
-add_executable(Lab_08 main.cpp ${headers} ${sources})
+add_executable(Lab_08 main.cpp ${headers} ${sources} headers/matrix.h sources/matrix.cpp)

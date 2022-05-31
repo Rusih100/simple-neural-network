@@ -56,6 +56,13 @@ build CMakeFiles/Lab_08.dir/main.cpp.obj: CXX_COMPILER__Lab_08_Debug D$:/CLion-p
   OBJECT_DIR = CMakeFiles\Lab_08.dir
   OBJECT_FILE_DIR = CMakeFiles\Lab_08.dir
 
+build CMakeFiles/Lab_08.dir/sources/matrix.cpp.obj: CXX_COMPILER__Lab_08_Debug D$:/CLion-project/Lab_08/sources/matrix.cpp || cmake_object_order_depends_target_Lab_08
+  DEP_FILE = CMakeFiles\Lab_08.dir\sources\matrix.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  INCLUDES = -ID:/CLion-project/Lab_08/headers
+  OBJECT_DIR = CMakeFiles\Lab_08.dir
+  OBJECT_FILE_DIR = CMakeFiles\Lab_08.dir\sources
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Lab_08
@@ -64,7 +71,7 @@ build CMakeFiles/Lab_08.dir/main.cpp.obj: CXX_COMPILER__Lab_08_Debug D$:/CLion-p
 #############################################
 # Link the executable Lab_08.exe
 
-build Lab_08.exe: CXX_EXECUTABLE_LINKER__Lab_08_Debug CMakeFiles/Lab_08.dir/main.cpp.obj
+build Lab_08.exe: CXX_EXECUTABLE_LINKER__Lab_08_Debug CMakeFiles/Lab_08.dir/main.cpp.obj CMakeFiles/Lab_08.dir/sources/matrix.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Lab_08.dir
