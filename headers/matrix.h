@@ -13,13 +13,16 @@ private:
     unsigned int colomn;
 
 public:
-
     Matrix(unsigned int row, unsigned int colomn);
     ~Matrix();
 
     void print();
 
-};
+    float *operator [] (int i);
+    Matrix operator * (const Matrix& other);
 
+    Matrix T(); // Транспонирование матрицы
+
+};
 
 #endif

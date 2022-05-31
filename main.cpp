@@ -6,8 +6,15 @@ using namespace std;
 int main() {
 
     cout << "Hello Matrix! \n";
-    Matrix A(3, 3);
+    Matrix A(1, 2);
+    A[0][0] = 1;
+    A[0][1] = 2;
+
     A.print();
+    cout << "\n";
+
+    auto B = A.T();
+    B.print();
 
     return 0;
 }
