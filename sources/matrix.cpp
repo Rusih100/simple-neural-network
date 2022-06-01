@@ -1,4 +1,4 @@
-#include "matrix.h"
+#include <matrix.h>
 #include <iostream>
 
 Matrix::Matrix(unsigned int n, unsigned int m) {

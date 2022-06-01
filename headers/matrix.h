@@ -1,8 +1,6 @@
 #ifndef LAB_08_MATRIX_H
 #define LAB_08_MATRIX_H
 
-#include <vector>
-
 class Matrix {
 
 private:
