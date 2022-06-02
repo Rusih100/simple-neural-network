@@ -7,12 +7,19 @@ using namespace std;
 
 int main() {
 
-    cout << "Hello Random! \n";
-    Random R(-10, 10, 4);
+    Matrix A(2, 3);
+    A.random_fill(0, 10);
+    A.print();
 
+    cout << "\n";
 
-    for (int i = 0; i < 50; ++i) {
-        cout << R.generate() << "\n";
-    }
+    Matrix B(3, 2);
+    B.random_fill(0, 10);
+    B.print();
+
+    cout << "\n";
+    Matrix C = A * B;
+    C.print();
+
     return 0;
 }

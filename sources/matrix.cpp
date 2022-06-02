@@ -1,5 +1,6 @@
 #include <matrix.h>
 #include <iostream>
+#include <random_generator.h>
 
 Matrix::Matrix(unsigned int n, unsigned int m) {
     this->row = n;
@@ -70,5 +71,15 @@ Matrix Matrix::T() {
         }
     }
     return result;
+}
+
+void Matrix::random_fill(int min , int max, unsigned int decimal_places) {
+    Random G(min, max, decimal_places);
+
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < colomn; ++j) {
+            data[i][j] = (float)G.generate();
+        }
+    }
 }
 

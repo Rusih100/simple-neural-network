@@ -21,6 +21,8 @@ public:
 
     Matrix T(); // Транспонирование матрицы
 
+    void random_fill(int min , int max, unsigned int decimal_places = 0);
+
 };
 
 #endif
