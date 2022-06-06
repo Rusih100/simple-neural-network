@@ -1,7 +1,6 @@
 #include <random_generator.h>
 #include <cmath>
-#include <random>
-#include <ctime>
+
 
 int Random::generate_digit() {
     return rand() % 10;
@@ -14,8 +13,6 @@ Random::Random(int min, int max, unsigned int decimal_places) {
     this->max = (max > min) ? max : min;
 
     this->decimal_places = decimal_places;
-
-    srand(time(NULL));
 }
 
 double Random::generate() {
