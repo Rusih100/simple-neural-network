@@ -11,6 +11,7 @@ private:
     unsigned int colomn;
 
 public:
+    Matrix();
     Matrix(unsigned int row, unsigned int colomn);
     ~Matrix();
 

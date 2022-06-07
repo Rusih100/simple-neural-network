@@ -4,3 +4,6 @@
 float Neural_layer::sigmoid_fx(float x) {
     return (float)(1 / (1 + pow(EXP, -x)));
 }
+
+
+

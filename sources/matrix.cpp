@@ -2,6 +2,24 @@
 #include <iostream>
 #include <random_generator.h>
 
+Matrix::Matrix() {
+    row = 0;
+    colomn = 0;
+
+    // Выделение памяти для матрицы
+    data = new float * [row];
+    for (int i = 0; i < row; ++i) {
+        data[i] = new float [colomn];
+    }
+
+    // Заполнение матрицы нулями
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < colomn; ++j) {
+            data[i][j] = 0;
+        }
+    }
+}
+
 Matrix::Matrix(unsigned int n, unsigned int m) {
     this->row = n;
     this->colomn = m;
@@ -14,7 +32,7 @@ Matrix::Matrix(unsigned int n, unsigned int m) {
 
     // Заполнение матрицы нулями
     for (int i = 0; i < row; ++i) {
-        for (int j = 0; j < m; ++j) {
+        for (int j = 0; j < colomn; ++j) {
             data[i][j] = 0;
         }
     }
@@ -82,4 +100,6 @@ void Matrix::random_fill(int min , int max, unsigned int decimal_places) {
         }
     }
 }
+
+
 

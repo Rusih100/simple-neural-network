@@ -14,8 +14,6 @@ private:
     // Функция сигмоиды
     static float sigmoid_fx(float x);
 
-public:
-
 };
 
 #endif
