@@ -1,6 +1,8 @@
 #ifndef LAB_08_MATRIX_H
 #define LAB_08_MATRIX_H
 
+#include <vector>
+
 class Matrix {
 
 private:
@@ -12,13 +14,17 @@ private:
 
 public:
     Matrix();
+    Matrix(const Matrix& other);
+    Matrix(const std::vector<float>& other);
     Matrix(unsigned int row, unsigned int colomn);
     ~Matrix();
 
     void print();
 
     float *operator [] (int i);
+
     Matrix operator * (const Matrix& other);
+    Matrix& operator = (const Matrix& other);
 
     Matrix T(); // Транспонирование матрицы
 
