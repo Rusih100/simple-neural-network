@@ -16,13 +16,16 @@ private:
     static float sigmoid_fx(float x);
 
 public:
+    Neural_layer();
+
     // Конструктор, принимает колличество нейронов и колличество нейронов прошлого слоя
     Neural_layer(unsigned int number_neurons, unsigned int number_inputs);
 
     // Вычисляет выходные значения слоя
     Matrix run(Matrix input_values);
 
-    // TODO: Перегрузить =
+    Neural_layer& operator = (const Neural_layer& other);
+
 };
 
 #endif

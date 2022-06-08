@@ -11,18 +11,21 @@ private:
     static const int number_inputs = 2;      // Колличество входов
     static const int number_outputs = 1;     // Колличество выходов
 
+    // Тренировочные данные
+    static Matrix dataset;
+    static Matrix dataset_result;
+
     // Слои
     Neural_layer L1;
     Neural_layer L2;
     Neural_layer Out;
 
 public:
-    // TODO: Дописать конструктор
     Neuron_network();
 
-    // TODO: Написать алгоритм среднеквадратической ошибки
-    // TODO: Написать алгоритм качания весов
+    Matrix run(const Matrix& data_input);
 
+    // TODO: Написать алгоритм среднеквадратической ошибки
     // TODO: Написать алгоритм обучения
 };
 

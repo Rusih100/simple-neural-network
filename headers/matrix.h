@@ -15,8 +15,9 @@ private:
 public:
     Matrix();
     Matrix(const Matrix& other);
-    Matrix(const std::vector<float>& other);
     Matrix(unsigned int row, unsigned int colomn);
+    explicit Matrix(const std::vector<float>& other);
+
     ~Matrix();
 
     void print();
@@ -29,7 +30,7 @@ public:
     Matrix T(); // Транспонирование матрицы
 
     // Функция заполнения матрицы случайными числами
-    void random_fill(int min , int max, unsigned int decimal_places = 0);
+    void random_fill(int min, int max, unsigned int decimal_places = 0);
 
 };
 
