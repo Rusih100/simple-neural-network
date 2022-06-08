@@ -12,13 +12,16 @@ private:
 
 public:
     Matrix();
+    Matrix(const Matrix& other);
     Matrix(unsigned int row, unsigned int colomn);
     ~Matrix();
 
     void print();
 
     float *operator [] (int i);
+
     Matrix operator * (const Matrix& other);
+    Matrix& operator = (const Matrix& other);
 
     Matrix T(); // Транспонирование матрицы
 

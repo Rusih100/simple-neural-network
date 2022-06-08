@@ -20,6 +20,24 @@ Matrix::Matrix() {
     }
 }
 
+Matrix::Matrix(const Matrix& other) {
+    row = other.row;
+    colomn = other.colomn;
+
+    // Выделение памяти для матрицы
+    data = new float * [row];
+    for (int i = 0; i < row; ++i) {
+        data[i] = new float [colomn];
+    }
+
+    // Копирование значений другой матрицы
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < colomn; ++j) {
+            data[i][j] = other.data[i][j];
+        }
+    }
+}
+
 Matrix::Matrix(unsigned int n, unsigned int m) {
     this->row = n;
     this->colomn = m;
@@ -80,6 +98,31 @@ Matrix Matrix::operator*(const Matrix& other) {
     return result;
 }
 
+Matrix& Matrix::operator=(const Matrix &other) {
+
+    // Случай самокопирования
+    if (this == &other){
+        return *this;
+    }
+
+    row = other.row;
+    colomn = other.colomn;
+
+    // Выделение памяти для матрицы
+    data = new float * [row];
+    for (int i = 0; i < row; ++i) {
+        data[i] = new float [colomn];
+    }
+
+    // Копирование значений другой матрицы
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < colomn; ++j) {
+            data[i][j] = other.data[i][j];
+        }
+    }
+    return *this;
+}
+
 Matrix Matrix::T() {
     Matrix result(colomn, row);
 
@@ -100,6 +143,3 @@ void Matrix::random_fill(int min , int max, unsigned int decimal_places) {
         }
     }
 }
-
-
-
