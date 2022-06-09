@@ -11,15 +11,46 @@ Neuron_network::Neuron_network() {
     Out = generate_Out;
 }
 
-std::vector<float> Neuron_network::run(const std::vector<float>& input_values) {
+vector<float> Neuron_network::run(const vector<float>& input_values) {
 
+    vector<float> result(number_outputs);
+
+    // Проверка входных данных
+    if (input_values.size() != number_inputs){
+        cout << "ERROR! The input data does not correspond to the dimension of the neural network.\n";
+        return result;
+    }
+
+    // Вычисления
     Matrix calc_value = L1.run(Matrix(input_values));
     calc_value = L2.run(calc_value);
     calc_value = Out.run(calc_value);
 
-    std::vector<float> result(number_outputs);
     for (int i = 0; i < number_outputs; ++i) {
         result[i] = calc_value[0][i];
     }
     return result;
+}
+
+void Neuron_network::training(
+        const vector <vector<float>>& dataset_input,
+        const vector <vector<float>>& dataset_output,
+        unsigned int number_epochs
+        ) {
+
+    // Проверки датасета
+    if (dataset_input.size() != dataset_output.size()){
+        cout << "ERROR! Training is not possible. \ndataset_input and dataset_output do not match in size. \n";
+        return;
+    }
+
+    for (int i = 0; i < dataset_input.size(); ++i) {
+        if ((dataset_input[i].size() != number_inputs) || dataset_output[i].size() != number_outputs){
+            cout << "ERROR! Training is not possible. \nThe data does not correspond to the dimension of the neural network. \n";
+            return;
+        }
+    }
+
+    // Обучение
+
 }

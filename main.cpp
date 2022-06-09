@@ -15,7 +15,7 @@ int main() {
 
     while (true) {
         cin >> dataset[0] >> dataset[1];
-        auto r =Alpha.run(dataset);
+        auto r = Alpha.run(dataset);
 
         for (int i = 0; i < 1; ++i) {
             cout << r[i] << "\n";
