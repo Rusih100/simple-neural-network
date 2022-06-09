@@ -2,6 +2,7 @@
 #define LAB_08_NEURON_NETWORK_H
 
 #include <neural_layer.h>
+#include <vector>
 
 class Neuron_network {
 
@@ -16,6 +17,7 @@ private:
     static Matrix dataset_result;
 
     // Слои
+    // TODO: Переписать в вектор
     Neural_layer L1;
     Neural_layer L2;
     Neural_layer Out;
@@ -23,7 +25,8 @@ private:
 public:
     Neuron_network();
 
-    Matrix run(const Matrix& data_input);
+    // Запуск нейросети с вектором значений
+    std::vector<float> run(const std::vector<float>& input_values);
 
     // TODO: Написать алгоритм среднеквадратической ошибки
     // TODO: Написать алгоритм обучения

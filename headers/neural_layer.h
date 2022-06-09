@@ -26,6 +26,7 @@ public:
 
     Neural_layer& operator = (const Neural_layer& other);
 
+    // TODO: Написать алгоритм обновление весов
 };
 
 #endif

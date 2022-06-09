@@ -10,9 +10,17 @@ using namespace std;
 int main() {
     srand(time(nullptr));
 
-    Neuron_network Network;
+    Neuron_network Alpha;
+    vector<float> dataset(2);
 
+    while (true) {
+        cin >> dataset[0] >> dataset[1];
+        auto r =Alpha.run(dataset);
 
+        for (int i = 0; i < 1; ++i) {
+            cout << r[i] << "\n";
+        }
+    }
 
     return 0;
 }

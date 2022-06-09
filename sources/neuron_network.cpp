@@ -11,11 +11,15 @@ Neuron_network::Neuron_network() {
     Out = generate_Out;
 }
 
-Matrix Neuron_network::run(const Matrix& input_values) {
+std::vector<float> Neuron_network::run(const std::vector<float>& input_values) {
 
-    Matrix result = L1.run(input_values);
-    result = L2.run(result);
-    result = Out.run(result);
+    Matrix calc_value = L1.run(Matrix(input_values));
+    calc_value = L2.run(calc_value);
+    calc_value = Out.run(calc_value);
+
+    std::vector<float> result(number_outputs);
+    for (int i = 0; i < number_outputs; ++i) {
+        result[i] = calc_value[0][i];
+    }
     return result;
-
 }
