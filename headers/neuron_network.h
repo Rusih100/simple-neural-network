@@ -16,7 +16,8 @@ private:
     static const int number_outputs = 1;     // Колличество выходов
 
     // Подсчет ошибки
-
+    // Среднеквадратичная ошибка
+    static float mean_squared_error(const vector<float>& x_true, const vector<float>& x);
 
     // Слои
     // TODO: Переписать в вектор

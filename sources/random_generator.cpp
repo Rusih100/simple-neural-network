@@ -6,6 +6,7 @@ int Random::generate_digit() {
     return rand() % 10;
 }
 
+
 Random::Random(int min, int max, unsigned int decimal_places) {
 
     // Проверка на min и max
@@ -14,6 +15,7 @@ Random::Random(int min, int max, unsigned int decimal_places) {
 
     this->decimal_places = decimal_places;
 }
+
 
 double Random::generate() {
 

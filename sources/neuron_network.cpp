@@ -1,5 +1,22 @@
 #include <neuron_network.h>
 
+float Neuron_network::mean_squared_error(const vector<float>& x_true, const vector<float>& x) {
+    // Среднеквадратичная ошибка
+
+    // Проверка входных данных
+    // Вернет -1, если размерности векторов не совпадают
+    if (x_true.size() != x.size()) {
+        cout << "ERROR. The dimensions of the vectors do not match. Return -1\n ";
+        return -1;
+    }
+
+    float sum = 0;
+    for (int i = 0; i < x.size(); ++i) {
+        sum += (x_true[i] - x[i]) * (x_true[i] - x[i]);
+    }
+    return sum / (float)x.size();
+}
+
 
 Neuron_network::Neuron_network() {
     Neural_layer generate_L1(neurons_per_layer, number_inputs);
@@ -10,6 +27,7 @@ Neuron_network::Neuron_network() {
     L2 = generate_L2;
     Out = generate_Out;
 }
+
 
 vector<float> Neuron_network::run(const vector<float>& input_values) {
 
@@ -31,6 +49,7 @@ vector<float> Neuron_network::run(const vector<float>& input_values) {
     }
     return result;
 }
+
 
 void Neuron_network::training(
         const vector <vector<float>>& dataset_input,     // Датасеты
@@ -60,7 +79,7 @@ void Neuron_network::training(
         for (int i = 0; i < dataset_input.size(); ++i) { // Перебираем датасеты
             dataset_result = run(dataset_input[i]);
 
-            // Считаем ошибку TODO: Написать алгоритм среднеквадратической ошибки
+
             // TODO: Написать стохастический градиентный спуск
 
         }
@@ -71,3 +90,4 @@ void Neuron_network::training(
 
 
 }
+

@@ -5,12 +5,14 @@ float Neural_layer::sigmoid_fx(float x) {
     return (float)(1 / (1 + pow(EXP, -x)));
 }
 
+
 Neural_layer::Neural_layer() {
     this->number_neurons = 0;
     this->number_inputs = 0;
     Matrix generate_weights;
     weights = generate_weights;
 }
+
 
 Neural_layer::Neural_layer(unsigned int number_neurons, unsigned int number_inputs) {
     this->number_neurons = number_neurons;
@@ -22,6 +24,7 @@ Neural_layer::Neural_layer(unsigned int number_neurons, unsigned int number_inpu
     weights = generate_weights;
 }
 
+
 Matrix Neural_layer::run(Matrix input_values) {
 
     Matrix result = input_values * weights;
@@ -31,6 +34,7 @@ Matrix Neural_layer::run(Matrix input_values) {
 
     return result;
 }
+
 
 Neural_layer& Neural_layer::operator=(const Neural_layer& other) {
     if (this == &other){

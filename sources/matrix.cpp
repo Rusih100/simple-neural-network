@@ -20,6 +20,7 @@ Matrix::Matrix() {
     }
 }
 
+
 Matrix::Matrix(const Matrix& other) {
     row = other.row;
     colomn = other.colomn;
@@ -37,6 +38,7 @@ Matrix::Matrix(const Matrix& other) {
         }
     }
 }
+
 
 Matrix::Matrix(const std::vector<float>& other) {
     this->row = 1;
@@ -73,6 +75,7 @@ Matrix::Matrix(unsigned int n, unsigned int m) {
     }
 }
 
+
 Matrix::~Matrix() {
     // Высвобождение памяти для матрицы
     for (int i = 0; i < row; ++i) {
@@ -80,6 +83,7 @@ Matrix::~Matrix() {
     }
     delete [] data;
 }
+
 
 void Matrix::print() {
     for (int i = 0; i < row; ++i) {
@@ -90,9 +94,11 @@ void Matrix::print() {
     }
 }
 
+
 float *Matrix::operator[](int i) {
     return data[i];
 }
+
 
 Matrix Matrix::operator*(const Matrix& other) {
 
@@ -114,6 +120,7 @@ Matrix Matrix::operator*(const Matrix& other) {
     }
     return result;
 }
+
 
 Matrix& Matrix::operator=(const Matrix &other) {
 
@@ -140,6 +147,7 @@ Matrix& Matrix::operator=(const Matrix &other) {
     return *this;
 }
 
+
 Matrix Matrix::T() {
     Matrix result(colomn, row);
 
@@ -150,6 +158,7 @@ Matrix Matrix::T() {
     }
     return result;
 }
+
 
 void Matrix::random_fill(int min , int max, unsigned int decimal_places) {
     Random G(min, max, decimal_places);
