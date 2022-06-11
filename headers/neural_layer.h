@@ -12,8 +12,8 @@ private:
     unsigned int number_inputs;   // Колличество нейронов на прошлом слое
     Matrix weights;               // Веса
 
-    // Функция сигмоиды
-    static float sigmoid_fx(float x);
+    static float sigmoid_fx(float x);       // Функция сигмоиды
+    static float sigmoid_fx_dx(float x);    // Производная сигмоиды
 
 public:
     Neural_layer();

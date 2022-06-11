@@ -21,6 +21,8 @@ private:
 
     // Слои
     // TODO: Переписать в вектор
+    vector<Neural_layer> network_layers;
+
     Neural_layer L1;
     Neural_layer L2;
     Neural_layer Out;
@@ -28,7 +30,7 @@ private:
 public:
     Neuron_network();
 
-    // Запуск нейросети с вектором значений
+    // Запуск нейросети с вектором значений (Прямое рампространение)
     vector<float> run(const vector<float>& input_values);
 
     void training(

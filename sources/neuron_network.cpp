@@ -26,6 +26,7 @@ Neuron_network::Neuron_network() {
     L1 = generate_L1;
     L2 = generate_L2;
     Out = generate_Out;
+
 }
 
 

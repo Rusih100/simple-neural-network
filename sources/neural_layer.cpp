@@ -5,6 +5,11 @@ float Neural_layer::sigmoid_fx(float x) {
     return (float)(1 / (1 + pow(EXP, -x)));
 }
 
+float Neural_layer::sigmoid_fx_dx(float x) {
+    float sigmoid = sigmoid_fx(x);
+    return sigmoid * (1 - sigmoid);
+}
+
 
 Neural_layer::Neural_layer() {
     this->number_neurons = 0;
