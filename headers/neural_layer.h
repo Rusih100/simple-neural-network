@@ -2,6 +2,9 @@
 #define LAB_08_NEURAL_LAYER_H
 
 #include <matrix.h>
+#include <iostream>
+
+using namespace std;
 
 #define EXP 2.7182818284
 
@@ -26,7 +29,9 @@ public:
 
     Neural_layer& operator = (const Neural_layer& other);
 
-    // TODO: Написать алгоритм обновление весов
+    // Выводит веса на экран
+    void print();
+
 };
 
 #endif

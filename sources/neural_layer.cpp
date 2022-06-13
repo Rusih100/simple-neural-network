@@ -5,6 +5,7 @@ float Neural_layer::sigmoid_fx(float x) {
     return (float)(1 / (1 + pow(EXP, -x)));
 }
 
+
 float Neural_layer::sigmoid_fx_dx(float x) {
     float sigmoid = sigmoid_fx(x);
     return sigmoid * (1 - sigmoid);
@@ -49,6 +50,13 @@ Neural_layer& Neural_layer::operator=(const Neural_layer& other) {
     number_inputs = other.number_inputs;
     weights = other.weights;
     return *this;
+}
+
+
+void Neural_layer::print() {
+    cout << "Weights: \n";
+    weights.print();
+    cout << "\n";
 }
 
 

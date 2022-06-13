@@ -11,6 +11,8 @@ int main() {
     srand(time(nullptr));
 
     Neuron_network Alpha;
+    Alpha.print_weights();
+
     vector<float> dataset(2);
 
     while (true) {

@@ -19,14 +19,17 @@ float Neuron_network::mean_squared_error(const vector<float>& x_true, const vect
 
 
 Neuron_network::Neuron_network() {
-    Neural_layer generate_L1(neurons_per_layer, number_inputs);
-    Neural_layer generate_L2(neurons_per_layer, neurons_per_layer);
-    Neural_layer generate_Out(number_outputs, neurons_per_layer);
 
-    L1 = generate_L1;
-    L2 = generate_L2;
-    Out = generate_Out;
+    Neural_layer input_Layer(neurons_per_layer, number_inputs);
+    network_layers.push_back(input_Layer);
 
+    for (int i = 0; i < number_hidden_layers - 1; ++i) {
+        Neural_layer hidden_Layer(neurons_per_layer, neurons_per_layer);
+        network_layers.push_back(hidden_Layer);
+    }
+
+    Neural_layer output_Layer(number_outputs, neurons_per_layer);
+    network_layers.push_back(output_Layer);
 }
 
 
@@ -41,13 +44,16 @@ vector<float> Neuron_network::run(const vector<float>& input_values) {
     }
 
     // Вычисления
-    Matrix calc_value = L1.run(Matrix(input_values));
-    calc_value = L2.run(calc_value);
-    calc_value = Out.run(calc_value);
+    Matrix temp(input_values);
+
+    for (auto & layer : network_layers) {
+        temp = layer.run(temp);
+    }
 
     for (int i = 0; i < number_outputs; ++i) {
-        result[i] = calc_value[0][i];
+        result[i] = temp[0][i];
     }
+
     return result;
 }
 
@@ -80,15 +86,16 @@ void Neuron_network::training(
         for (int i = 0; i < dataset_input.size(); ++i) { // Перебираем датасеты
             dataset_result = run(dataset_input[i]);
 
-
-            // TODO: Написать стохастический градиентный спуск
-
         }
 
 
     }
-
-
-
 }
 
+
+void Neuron_network::print_weights() {
+    for (int i = 0; i < network_layers.size(); ++i) {
+        cout << i + 1 << ") ";
+        network_layers[i].print();
+    }
+}
