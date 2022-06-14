@@ -1,5 +1,14 @@
 #include <neuron_network.h>
 
+Neuron_network::Neuron_network(const Neuron_network &other) {
+    this->number_hidden_layers = other.number_hidden_layers;
+    this->neurons_per_layer = other.neurons_per_layer;
+    this->number_inputs = other.number_inputs;
+    this->number_outputs = other.number_outputs;
+    this->network_layers = other.network_layers;
+}
+
+
 Neuron_network::Neuron_network(
         unsigned int hidden_layers_n,
         unsigned int neurons_per_layer_n,
@@ -56,3 +65,20 @@ void Neuron_network::print_weights() {
         network_layers[i].print();
     }
 }
+
+Neuron_network &Neuron_network::operator=(const Neuron_network &other) {
+
+    if (this == &other){
+        return *this;
+    }
+
+    this->number_hidden_layers = other.number_hidden_layers;
+    this->neurons_per_layer = other.neurons_per_layer;
+    this->number_inputs = other.number_inputs;
+    this->number_outputs = other.number_outputs;
+    this->network_layers = other.network_layers;
+
+    return *this;
+}
+
+

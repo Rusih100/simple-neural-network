@@ -24,13 +24,10 @@ private:
     // Среднеквадратичная ошибка
     static float mean_squared_error(const vector<float>& x_true, const vector<float>& x);
 
-    // TODO: Запоминание и возвращение лучшей нейросети
-
 public:
     Network_training(
             const vector <vector<float>>& dataset_input,
             const vector <vector<float>>& dataset_output,
-            unsigned int number_epochs,
 
             unsigned int hidden_layers_n = 2,
             unsigned int neurons_per_layer_n = 3,
@@ -39,7 +36,7 @@ public:
             );
 
     // Тренировка нейросети
-    void training();
+    Neuron_network training(unsigned int numberEpochs, unsigned int step_for_epochs = 10);
 
 
 };

@@ -19,7 +19,7 @@ Neural_layer::Neural_layer(unsigned int number_neurons, unsigned int number_inpu
     this->number_inputs = number_inputs;
 
     Matrix generate_weights(this->number_inputs, this->number_neurons);
-    generate_weights.random_fill(-3, 3, 3);
+    generate_weights.random_fill(-2, 2, 3);
 
     weights = generate_weights;
 }

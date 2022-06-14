@@ -21,6 +21,8 @@ private:
     vector<Neural_layer> network_layers;
 
 public:
+    Neuron_network(const Neuron_network& other);
+
     // Конструктор со значениями по умолчанию
     explicit Neuron_network(
             unsigned int hidden_layers_n = 2,
@@ -35,7 +37,8 @@ public:
     // Выводит все веса нейросети
     void print_weights();
 
-    // TODO: Конструктор копирования и перегрузка =
+    Neuron_network& operator = (const Neuron_network& other);
+
     // TODO: Функция выбора слоя и смены случайного его веса
 };
 
