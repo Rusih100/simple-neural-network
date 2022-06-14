@@ -6,12 +6,6 @@ float Neural_layer::sigmoid_fx(float x) {
 }
 
 
-float Neural_layer::sigmoid_fx_dx(float x) {
-    float sigmoid = sigmoid_fx(x);
-    return sigmoid * (1 - sigmoid);
-}
-
-
 Neural_layer::Neural_layer() {
     this->number_neurons = 0;
     this->number_inputs = 0;
