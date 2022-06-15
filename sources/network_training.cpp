@@ -37,9 +37,6 @@ Network_training::Network_training(const vector <vector<float>> &dataset_input,
     this->dataset_input = dataset_input;
     this->dataset_output = dataset_output;
 
-    // Инициализация колличества эпох обучения
-    this->number_epochs = number_epochs;
-
 }
 
 
@@ -56,12 +53,13 @@ Neuron_network Network_training::training(unsigned int numberEpochs, unsigned in
         }
     }
 
-    Neuron_network best_network;
-    float best_network_error = 1;
+    Neuron_network best_network;    // Лучшая нейронная сеть, которую вернет функция
+    float best_network_error = 1;   // Ошибка лучшей нейронной сети TODO: сделать атрибутом класса нейросети
 
 
-    // Инициализация 10 нейросетей и выбор лучшей
+    // Инициализация n нейросетей и выбор лучшей нейросети для старта
     for (int i = 0; i < step_for_epochs; ++i) {
+        // Генерируем тестовую нейросеть
         Neuron_network test_network(
                 number_hidden_layers,
                 neurons_per_layer,
@@ -69,26 +67,32 @@ Neuron_network Network_training::training(unsigned int numberEpochs, unsigned in
                 number_outputs
                 );
 
-        float max_test_network_error = 0;
-        float test_network_error;
+        float max_test_network_error = 0;   // Максимальная ошибка из датасетов
+        float set_error;                    // Ошибка датасета
+
+        // Прогоняем датасеты и берем максимальную ошибку из датасета
         for (int set = 0; set < dataset_input.size(); ++set) {
+
             vector<float> result_run = test_network.run(dataset_input[set]);
+            set_error = mean_squared_error(dataset_output[set], result_run);
 
-            test_network_error = mean_squared_error(dataset_output[set], result_run);
-
-            if (max_test_network_error < test_network_error){
-                max_test_network_error = test_network_error;
+            if (max_test_network_error < set_error){
+                max_test_network_error = set_error;
             }
         }
 
         cout << max_test_network_error << "\n";
 
+        // Выбор лучшей из n стартовых нейросетей
         if (max_test_network_error < best_network_error){
             best_network = test_network;
             best_network_error = max_test_network_error;
         }
     }
     cout << "best: " << best_network_error << "\n";
+
+
+
 
     // Меняем веса у лучшей нейросети
 
@@ -98,8 +102,6 @@ Neuron_network Network_training::training(unsigned int numberEpochs, unsigned in
 //
 //        }
     return best_network;
-
-
     }
 
 

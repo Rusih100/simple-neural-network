@@ -12,8 +12,6 @@ private:
     vector <vector<float>> dataset_input;    // Вектор датасетов
     vector <vector<float>> dataset_output;   // Результаты датасетов
 
-    unsigned int number_epochs;              // Колличество эпох обучения
-
     // Параметры генерируемой нейросети
     unsigned int number_hidden_layers;       // Колличество скрытых слоев
     unsigned int neurons_per_layer;          // Нейронов на слой
