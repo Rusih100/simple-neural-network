@@ -10,6 +10,8 @@ using namespace std;
 
 class Neural_layer {
 
+    friend class Neuron_network;
+
 private:
     unsigned int number_neurons;            // Колличество нейронов
     unsigned int number_inputs;             // Колличество нейронов на прошлом слое

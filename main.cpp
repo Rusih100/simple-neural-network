@@ -11,40 +11,35 @@ using namespace std;
 int main() {
     srand(time(nullptr));
 
-    vector <vector<float>> dataset_input = {
-            {0, 0}, {0, 1}, {1, 0}, {1, 1}
-    };
-
-    vector <vector<float>> dataset_output = {
-            {1}, {1}, {1}, {1}
-    };
-
-    Network_training NetT(dataset_input, dataset_output, 1, 2);
-    auto R = NetT.training(10, 100);
-
-    cout << "\n\n";
-    cout << R.run(dataset_input[0])[0] << "\n";
-    cout << R.run(dataset_input[1])[0] << "\n";
-    cout << R.run(dataset_input[2])[0] << "\n";
-    cout << R.run(dataset_input[3])[0] << "\n\n";
-
-    R.print_weights();
-
-//    Neuron_network Alpha;
-//    Alpha.print_weights();
+    Neuron_network Alpha(1, 2, 2, 1);
+    Alpha.print_weights();
+    Alpha.update_random_weight(1);
+    Alpha.print_weights();
 
 
+//    vector <vector<float>> dataset_input = {
+//            {0, 0}, {0, 1}, {1, 0}, {1, 1}
+//    };
 //
-//    vector<float> dataset(2);
+//    vector <vector<float>> dataset_output = {
+//            {0}, {1}, {1}, {0}
+//    };
 //
-//    while (true) {
-//        cin >> dataset[0] >> dataset[1];
-//        auto r = Alpha.run(dataset);
 //
-//        for (int i = 0; i < 1; ++i) {
-//            cout << r[i] << "\n";
+//    // Создание и тренировка нейросети
+//    Network_training Generate_network(dataset_input, dataset_output, 1, 2);
+//    Neuron_network XOR = Generate_network.training(10, 100);
+//
+//    // Проверка обученной нейросети
+//    cout << "\nDatasets result: \n";
+//    for (auto & set : dataset_input) {
+//        cout << "[ ";
+//        for (float i : set) {
+//            cout << i << " ";
 //        }
+//        cout << "] - ";
+//        cout << XOR.run(set)[0] << "\n";
 //    }
-//
-//    return 0;
+
+    return 0;
 }

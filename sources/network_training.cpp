@@ -54,7 +54,7 @@ Neuron_network Network_training::training(unsigned int numberEpochs, unsigned in
     }
 
     Neuron_network best_network;    // Лучшая нейронная сеть, которую вернет функция
-    float best_network_error = 1;   // Ошибка лучшей нейронной сети TODO: сделать атрибутом класса нейросети
+    float best_network_error = 1;   // Ошибка лучшей нейронной сети
 
 
     // Инициализация n нейросетей и выбор лучшей нейросети для старта
@@ -81,15 +81,13 @@ Neuron_network Network_training::training(unsigned int numberEpochs, unsigned in
             }
         }
 
-        cout << max_test_network_error << "\n";
-
         // Выбор лучшей из n стартовых нейросетей
         if (max_test_network_error < best_network_error){
             best_network = test_network;
             best_network_error = max_test_network_error;
         }
     }
-    cout << "best: " << best_network_error << "\n";
+    cout << "Start network error: " << best_network_error << "\n";
 
 
 

@@ -1,9 +1,12 @@
 #ifndef LAB_08_NEURON_NETWORK_H
 #define LAB_08_NEURON_NETWORK_H
 
-#include <neural_layer.h>
 #include <iostream>
 #include <vector>
+#include <cmath>
+
+#include <random_generator.h>
+#include <neural_layer.h>
 
 using namespace std;
 
@@ -37,9 +40,11 @@ public:
     // Выводит все веса нейросети
     void print_weights();
 
+    // Качает вес нейросети с определенной точностью
+    void update_random_weight(unsigned int decimal_places);
+
     Neuron_network& operator = (const Neuron_network& other);
 
-    // TODO: Функция выбора слоя и смены случайного его веса
 };
 
 #endif

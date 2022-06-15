@@ -66,6 +66,32 @@ void Neuron_network::print_weights() {
     }
 }
 
+
+void Neuron_network::update_random_weight(unsigned int decimal_places) {
+
+    // Выбираем случайный слой
+    int layer_i = (int)Random(0, (int)network_layers.size() - 1).generate();
+
+    // Узнаем размерности матрицы для выбора случайного веса
+    int max_row_i = (int)network_layers[layer_i].number_inputs - 1;
+    int max_colomn_i = (int)network_layers[layer_i].number_neurons - 1;
+
+    // Выбираем случайнык вес
+    int row = (int)Random(0, max_row_i).generate();
+    int colomn = (int)Random(0, max_colomn_i).generate();
+
+    // Генерируем изменяемое число
+    Random G(1, 5);
+    double num = pow(-1, G.generate()) * (G.generate() / pow(10, decimal_places));
+
+    // TODO Найти деление на 0, оптимизировать
+
+    // Меняем число
+    network_layers[layer_i].weights[row][colomn] += (float)num;
+}
+
+
+
 Neuron_network &Neuron_network::operator=(const Neuron_network &other) {
 
     if (this == &other){
