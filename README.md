@@ -5,7 +5,7 @@
 Hi. This is a simple neural network model that is trained by evolution.
 A neural network consists of two main classes [Network_training](https://github.com/Rusih100/simple_neural_network/blob/master/headers/network_training.h) and [Neuron_network](https://github.com/Rusih100/simple_neural_network/blob/master/headers/neuron_network.h).
 
-## Example of creation
+## Example of creating a neural network
 In this example, we will create a neural network that performs the XOR operation.
 
 | x | y | XOR|
