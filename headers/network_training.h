@@ -34,7 +34,8 @@ public:
             );
 
     // Тренировка нейросети
-    Neuron_network training(unsigned int numberEpochs, unsigned int step_for_epochs = 10);
+    // (Колличество эпох и колличество потомков, порождаемое из одной нейросети
+    Neuron_network training(unsigned int number_epochs);
 
 
 };

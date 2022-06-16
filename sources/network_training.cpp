@@ -40,7 +40,7 @@ Network_training::Network_training(const vector <vector<float>> &dataset_input,
 }
 
 
-Neuron_network Network_training::training(unsigned int numberEpochs, unsigned int step_for_epochs) {
+Neuron_network Network_training::training(unsigned int number_epochs) {
 
     // Проверки датасета
     if (dataset_input.size() != dataset_output.size()){
@@ -52,53 +52,45 @@ Neuron_network Network_training::training(unsigned int numberEpochs, unsigned in
             cout << "ERROR! Training is not possible. \nThe data does not correspond to the dimension of the neural network. \n";
         }
     }
+    cout << "The beginning of neural network training.\n";
 
-    Neuron_network best_network;    // Лучшая нейронная сеть, которую вернет функция
-    float best_network_error = 1;   // Ошибка лучшей нейронной сети
+    // Стартовая нейросеть, которая будет мутировать в лучшую
+    Neuron_network best_network(
+            number_hidden_layers,
+            neurons_per_layer,
+            number_inputs,
+            number_outputs
+    );
+    float best_network_error = 1;
 
+    // Меняем веса у лучшей нейросети
+    for (int ep = 1; ep <= number_epochs; ++ep) { // Эпохи
 
-    // Инициализация n нейросетей и выбор лучшей нейросети для старта
-    for (int i = 0; i < step_for_epochs; ++i) {
-        // Генерируем тестовую нейросеть
-        Neuron_network test_network(
-                number_hidden_layers,
-                neurons_per_layer,
-                number_inputs,
-                number_outputs
-                );
+        // Копируем лучшую сеть
+        Neuron_network test_network = best_network;
 
-        float max_test_network_error = 0;   // Максимальная ошибка из датасетов
+        // Качаем веса
+        test_network.update_random_weight(random_int(0,3), random_int(0, 5));
+
+        float avg_test_network_error = 0;   // Средняя ошибка из датасетов
         float set_error;                    // Ошибка датасета
 
-        // Прогоняем датасеты и берем максимальную ошибку из датасета
+        // Прогоняем датасеты и считаем среднюю ошибку датасетов
         for (int set = 0; set < dataset_input.size(); ++set) {
 
             vector<float> result_run = test_network.run(dataset_input[set]);
             set_error = mean_squared_error(dataset_output[set], result_run);
-
-            if (max_test_network_error < set_error){
-                max_test_network_error = set_error;
-            }
+            avg_test_network_error += set_error;
         }
+        avg_test_network_error = avg_test_network_error / (float)dataset_input.size();
 
-        // Выбор лучшей из n стартовых нейросетей
-        if (max_test_network_error < best_network_error){
+        // Если сеть стала лучше
+        if (avg_test_network_error < best_network_error){
             best_network = test_network;
-            best_network_error = max_test_network_error;
+            best_network_error = avg_test_network_error;
         }
     }
-    cout << "Start network error: " << best_network_error << "\n";
-
-
-
-
-    // Меняем веса у лучшей нейросети
-
-//    for (int ep = 1; ep <= numberEpochs; ++ep) { // Эпохи
-//
-//
-//
-//        }
+    cout << "The neural network is trained. Network error: " << best_network_error << "\n";
     return best_network;
     }
 
