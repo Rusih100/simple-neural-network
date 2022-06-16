@@ -5,13 +5,14 @@
 #include <neuron_network.h>
 #include <network_training.h>
 
+#include <random_generator.h>
 
 using namespace std;
 
 int main() {
     srand(time(nullptr));
 
-    Neuron_network Alpha(1, 2, 2, 1);
+    Neuron_network Alpha(1, 1, 1, 1);
     Alpha.print_weights();
     Alpha.update_random_weight(1);
     Alpha.print_weights();

@@ -67,27 +67,25 @@ void Neuron_network::print_weights() {
 }
 
 
-void Neuron_network::update_random_weight(unsigned int decimal_places) {
+void Neuron_network::update_random_weight(unsigned int decimal_places, unsigned int max_deviation) {
 
     // Выбираем случайный слой
-    int layer_i = (int)Random(0, (int)network_layers.size() - 1).generate();
+    int layer_index = random_int(0, (int)network_layers.size() - 1);
 
     // Узнаем размерности матрицы для выбора случайного веса
-    int max_row_i = (int)network_layers[layer_i].number_inputs - 1;
-    int max_colomn_i = (int)network_layers[layer_i].number_neurons - 1;
+    int max_row_index = (int)network_layers[layer_index].number_inputs - 1;
+    int max_colomn_index = (int)network_layers[layer_index].number_neurons - 1;
 
-    // Выбираем случайнык вес
-    int row = (int)Random(0, max_row_i).generate();
-    int colomn = (int)Random(0, max_colomn_i).generate();
+    // Выбираем случайнык вес матрице весов
+    int row = random_int(0, max_row_index);
+    int colomn = random_int(0, max_colomn_index);
 
     // Генерируем изменяемое число
-    Random G(1, 5);
-    double num = pow(-1, G.generate()) * (G.generate() / pow(10, decimal_places));
-
-    // TODO Найти деление на 0, оптимизировать
+    double num = ((double)random_int(1, 1 + (int)max_deviation) /
+            pow(10, decimal_places)) * pow(-1, random_int(0, 1));
 
     // Меняем число
-    network_layers[layer_i].weights[row][colomn] += (float)num;
+    network_layers[layer_index].weights[row][colomn] += (float)num;
 }
 
 

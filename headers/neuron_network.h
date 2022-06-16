@@ -41,7 +41,7 @@ public:
     void print_weights();
 
     // Качает вес нейросети с определенной точностью
-    void update_random_weight(unsigned int decimal_places);
+    void update_random_weight(unsigned int decimal_places, unsigned int max_deviation = 0);
 
     Neuron_network& operator = (const Neuron_network& other);
 

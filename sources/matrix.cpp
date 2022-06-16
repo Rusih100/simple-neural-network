@@ -161,11 +161,9 @@ Matrix Matrix::T() {
 
 
 void Matrix::random_fill(int min , int max, unsigned int decimal_places) {
-    Random G(min, max, decimal_places);
-
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < colomn; ++j) {
-            data[i][j] = (float)G.generate();
+            data[i][j] = (float)random_double(min, max, decimal_places);
         }
     }
 }
