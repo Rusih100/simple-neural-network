@@ -21,16 +21,24 @@ Neuron_network::Neuron_network(
     this->number_inputs = inputs_n;
     this->number_outputs = outputs_n;
 
-    Neural_layer input_Layer(neurons_per_layer, number_inputs);
-    network_layers.push_back(input_Layer);
+    if (number_hidden_layers != 0){ // Если есть скрытый слой
 
-    for (int i = 0; i < number_hidden_layers - 1; ++i) {
-        Neural_layer hidden_Layer(neurons_per_layer, neurons_per_layer);
-        network_layers.push_back(hidden_Layer);
+        Neural_layer input_Layer(neurons_per_layer, number_inputs);
+        network_layers.push_back(input_Layer);
+
+        for (int i = 0; i < number_hidden_layers - 1; ++i) {
+            Neural_layer hidden_Layer(neurons_per_layer, neurons_per_layer);
+            network_layers.push_back(hidden_Layer);
+        }
+
+        Neural_layer output_Layer(number_outputs, neurons_per_layer);
+        network_layers.push_back(output_Layer);
+
+    } else { // Если нет скрытых слоев
+        Neural_layer input_Layer(number_outputs, number_inputs);
+        network_layers.push_back(input_Layer);
     }
 
-    Neural_layer output_Layer(number_outputs, neurons_per_layer);
-    network_layers.push_back(output_Layer);
 }
 
 

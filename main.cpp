@@ -35,6 +35,9 @@ int main() {
         cout << "] - ";
         cout << XOR.run(set)[0] << "\n";
     }
+    cout << "\n";
+
+    XOR.print_weights();
 
     return 0;
 }
