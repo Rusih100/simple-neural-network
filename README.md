@@ -1,5 +1,5 @@
 # simple_neural_network
-🧬 A simple evolutionary neural network in C++
+🧬 A simple scalable evolutionary neural network in C++
 
 ## Description
 Hi. This is a simple neural network model that is trained by evolution.  
