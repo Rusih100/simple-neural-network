@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 
-#include <neural_layer.h>
 #include <neuron_network.h>
 #include <network_training.h>
 
@@ -22,8 +21,9 @@ int main() {
 
 
     // Создание и тренировка нейросети
-    Network_training Generate_network(dataset_input, dataset_output, 2, 3);
-    Neuron_network XOR = Generate_network.training(100000);
+    Neuron_network XOR(2, 3, 2, 1);
+    Network_training Training_network(dataset_input, dataset_output, XOR);
+    XOR = Training_network.training(100000);
 
     // Проверка обученной нейросети
     cout << "\nDatasets result: \n";

@@ -33,14 +33,15 @@ Create an instance of the Network_training class with the parameters:
 2 hidden layers (hidden_layers_n), 3 neurons on each hidden layer (neurons_per_layer_n), 2 input neurons (inputs_n), 1 output neuron (outputs_n).
 
 ```cpp
-Network_training Generate_network(dataset_input, dataset_output, 2, 3, 2, 1);
+Neuron_network XOR(2, 3, 2, 1);
 ```
 
 Let's train a neural network with these parameters for 100,000 epochs.  
 The method train() will return us a trained neural network
 
 ```cpp
-Neuron_network XOR = Generate_network.training(100000);
+Network_training Training_network(dataset_input, dataset_output, XOR);
+XOR = Training_network.training(100000);
 ```
 
 Let's test the work of a neural network on a data set:

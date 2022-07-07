@@ -20,18 +20,23 @@ float Network_training::mean_squared_error(const vector<float>& x_true, const ve
 
 Network_training::Network_training(const vector <vector<float>> &dataset_input,
                                    const vector <vector<float>> &dataset_output,
-
-                                   unsigned int hidden_layers_n,
-                                   unsigned int neurons_per_layer_n,
-                                   unsigned int inputs_n,
-                                   unsigned int outputs_n
+                                   const Neuron_network& network
                                    ) {
 
-    // Инициализация параметров генерируемых нейросетей
-    this->number_hidden_layers = hidden_layers_n;
-    this->neurons_per_layer = neurons_per_layer_n;
-    this->number_inputs = inputs_n;
-    this->number_outputs = outputs_n;
+    // Проверки датасета
+    if (dataset_input.size() != dataset_output.size()){
+        cout << "ERROR! Training is not possible. \ndataset_input and dataset_output do not match in size. \n";
+    }
+
+//    for (int i = 0; i < dataset_input.size(); ++i) {
+//        if ((dataset_input[i].size() != number_inputs) || dataset_output[i].size() != number_outputs){
+//            cout << "ERROR! Training is not possible. \nThe data does not correspond to the dimension of the neural network. \n";
+//        }
+//    }
+//    cout << "The beginning of neural network training.\n";
+
+    // Инициализация нейросети
+    this->network = network;
 
     // Инициализациия датасетов
     this->dataset_input = dataset_input;
@@ -42,25 +47,8 @@ Network_training::Network_training(const vector <vector<float>> &dataset_input,
 
 Neuron_network Network_training::training(unsigned int number_epochs) {
 
-    // Проверки датасета
-    if (dataset_input.size() != dataset_output.size()){
-        cout << "ERROR! Training is not possible. \ndataset_input and dataset_output do not match in size. \n";
-    }
-
-    for (int i = 0; i < dataset_input.size(); ++i) {
-        if ((dataset_input[i].size() != number_inputs) || dataset_output[i].size() != number_outputs){
-            cout << "ERROR! Training is not possible. \nThe data does not correspond to the dimension of the neural network. \n";
-        }
-    }
-    cout << "The beginning of neural network training.\n";
-
     // Стартовая нейросеть, которая будет мутировать в лучшую
-    Neuron_network best_network(
-            number_hidden_layers,
-            neurons_per_layer,
-            number_inputs,
-            number_outputs
-    );
+    Neuron_network best_network = network;
     float best_network_error = 1;
 
     // Меняем веса у лучшей нейросети
