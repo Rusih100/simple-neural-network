@@ -3,6 +3,7 @@
 
 ## Description
 Hi. This is a simple neural network model that is trained by evolution.  
+The neural network is scalable, that is, the number of input and output neurons is set, as well as the number of hidden layers with the same number of neurons on each layer is set. The sigmoid function is used as the activation function.        
 A neural network consists of two main classes [Network_training](https://github.com/Rusih100/simple_neural_network/blob/master/headers/network_training.h) and [Neuron_network](https://github.com/Rusih100/simple_neural_network/blob/master/headers/neuron_network.h).  
 
 
@@ -29,7 +30,7 @@ vector <vector<float>> dataset_output = {
     };
 ```
 
-Create an instance of the Network_training class with the parameters:  
+Create an instance of the Neuron_network class with the parameters:  
 2 hidden layers (hidden_layers_n), 3 neurons on each hidden layer (neurons_per_layer_n), 2 input neurons (inputs_n), 1 output neuron (outputs_n).
 
 ```cpp
@@ -37,10 +38,11 @@ Neuron_network XOR(2, 3, 2, 1);
 ```
 
 Let's train a neural network with these parameters for 100,000 epochs.  
-The method train() will return us a trained neural network
+To do this, create an instance of class Network_training and pass it our neural network and datasets.    
+The method training() will return us a trained neural network
 
 ```cpp
-Network_training Training_network(dataset_input, dataset_output, XOR);
+Network_training Training_network(dataset_input, dataset_output, XOR);  
 XOR = Training_network.training(100000);
 ```
 
