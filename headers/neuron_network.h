@@ -13,14 +13,16 @@ using namespace std;
 class Neuron_network {
     // Класс инициализирующий нейронную сеть и ее веса
 
+    friend class Network_training;
+
 private:
     // Параметры нейросети
-    unsigned int number_hidden_layers; // Колличество скрытых слоев
+    unsigned int number_hidden_layers; // Количество скрытых слоев
     unsigned int neurons_per_layer;    // Нейронов на слой
-    unsigned int number_inputs;        // Колличество входов
-    unsigned int number_outputs;       // Колличество выходов
+    unsigned int number_inputs;        // Количество входов
+    unsigned int number_outputs;       // Количество выходов
 
-    // Слои
+    // Слои нейросети
     vector<Neural_layer> network_layers;
 
 public:
@@ -34,14 +36,11 @@ public:
             unsigned int outputs_n = 1
             );
 
-    // Запуск нейросети с вектором значений
+    // Запуск нейросеть с вектором значений
     vector<float> run(const vector<float>& input_values);
 
     // Выводит все веса нейросети
     void print_weights();
-
-    // Качает вес нейросети с определенной точностью
-    void update_random_weight(unsigned int decimal_places, unsigned int max_deviation = 0);
 
     Neuron_network& operator = (const Neuron_network& other);
 

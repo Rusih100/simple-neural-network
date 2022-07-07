@@ -18,6 +18,9 @@ private:
     // Подсчет ошибки методом среднеквадратичной ошибки
     static float mean_squared_error(const vector<float>& x_true, const vector<float>& x);
 
+    // Качает случайный вес нейросети с определенной точностью
+    static void update_random_weight(Neuron_network& network, unsigned int decimal_places, unsigned int max_deviation = 0);
+
 public:
     Network_training(
             const vector <vector<float>>& dataset_input,

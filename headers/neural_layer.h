@@ -10,11 +10,11 @@ using namespace std;
 
 class Neural_layer {
 
-    friend class Neuron_network;
+    friend class Network_training;
 
 private:
-    unsigned int number_neurons;            // Колличество нейронов
-    unsigned int number_inputs;             // Колличество нейронов на прошлом слое
+    unsigned int number_neurons;            // Количество нейронов
+    unsigned int number_inputs;             // Количество нейронов на прошлом слое
     Matrix weights;                         // Веса
 
     static float sigmoid_fx(float x);       // Функция сигмоиды
@@ -22,7 +22,7 @@ private:
 public:
     Neural_layer();
 
-    // Конструктор, принимает колличество нейронов и колличество нейронов прошлого слоя
+    // Конструктор, принимает количество нейронов и колличество нейронов прошлого слоя
     Neural_layer(unsigned int number_neurons, unsigned int number_inputs);
 
     // Вычисляет выходные значения слоя

@@ -101,15 +101,13 @@ float *Matrix::operator[](int i) {
 
 
 Matrix Matrix::operator*(const Matrix& other) {
+    // Если количество столбцов m в первой матрице не равно количеству строк n во второй матрице,
+    // то вызываем исключение
+    if (colomn != other.row) {
+        throw std::invalid_argument("The operation for these matrices is not possible, incompatible dimensions. \n");
+    }
 
     Matrix result(row, other.colomn);
-
-    // Если количество столбцов m в первой матрице не равно количеству строк n во второй матрице,
-    // то вернется пустая матрица размера: n строк первой на m столбцов второй
-    if (colomn != other.row) {
-        std::cout << "ERROR! The operation for these matrices is not possible, an empty matrix was returned. \n";
-        return result;
-    }
 
     for (int i = 0; i < row; ++i) {
         for (int j = 0; j < other.colomn; ++j) {

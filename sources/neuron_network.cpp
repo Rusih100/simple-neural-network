@@ -16,12 +16,30 @@ Neuron_network::Neuron_network(
         unsigned int outputs_n
         ) {
 
+    // Проверка входных данных
+
+    // Проверка количества входных нейронов
+    if (inputs_n == 0){
+        throw invalid_argument("The number of input neurons must be greater than zero. \n");
+    }
+
+    // Проверка количества выходных нейронов
+    if (outputs_n == 0){
+        throw invalid_argument("The number of output neurons must be greater than zero. \n");
+    }
+
+    // Проверка количества скрытых нейронов
+    if (hidden_layers_n != 0 && neurons_per_layer_n == 0){
+        throw invalid_argument("The number of neurons on the hidden layer must be greater than zero if there is a hidden layer. \n");
+    }
+
     this->number_hidden_layers = hidden_layers_n;
     this->neurons_per_layer = neurons_per_layer_n;
     this->number_inputs = inputs_n;
     this->number_outputs = outputs_n;
 
-    if (number_hidden_layers != 0){ // Если есть скрытый слой
+    // Если есть скрытый слой
+    if (number_hidden_layers != 0){
 
         Neural_layer input_Layer(neurons_per_layer, number_inputs);
         network_layers.push_back(input_Layer);
@@ -34,7 +52,8 @@ Neuron_network::Neuron_network(
         Neural_layer output_Layer(number_outputs, neurons_per_layer);
         network_layers.push_back(output_Layer);
 
-    } else { // Если нет скрытых слоев
+    // Если нет скрытых слоев
+    } else {
         Neural_layer input_Layer(number_outputs, number_inputs);
         network_layers.push_back(input_Layer);
     }
@@ -44,12 +63,9 @@ Neuron_network::Neuron_network(
 
 vector<float> Neuron_network::run(const vector<float>& input_values) {
 
-    vector<float> result(number_outputs);
-
     // Проверка входных данных
     if (input_values.size() != number_inputs){
-        cout << "ERROR! The input data does not correspond to the dimension of the neural network.\n";
-        return result;
+        throw invalid_argument("The input data does not correspond to the dimension of the neural network.\n");
     }
 
     // Вычисления
@@ -58,6 +74,8 @@ vector<float> Neuron_network::run(const vector<float>& input_values) {
     for (auto & layer : network_layers) {
         temp = layer.run(temp);
     }
+
+    vector<float> result(number_outputs); // Результат
 
     for (int i = 0; i < number_outputs; ++i) {
         result[i] = temp[0][i];
@@ -73,29 +91,6 @@ void Neuron_network::print_weights() {
         network_layers[i].print();
     }
 }
-
-
-void Neuron_network::update_random_weight(unsigned int decimal_places, unsigned int max_deviation) {
-
-    // Выбираем случайный слой
-    int layer_index = random_int(0, (int)network_layers.size() - 1);
-
-    // Узнаем размерности матрицы для выбора случайного веса
-    int max_row_index = (int)network_layers[layer_index].number_inputs - 1;
-    int max_colomn_index = (int)network_layers[layer_index].number_neurons - 1;
-
-    // Выбираем случайнык вес матрице весов
-    int row = random_int(0, max_row_index);
-    int colomn = random_int(0, max_colomn_index);
-
-    // Генерируем изменяемое число
-    double num = ((double)random_int(1, 1 + (int)max_deviation) /
-            pow(10, decimal_places)) * pow(-1, random_int(0, 1));
-
-    // Меняем число
-    network_layers[layer_index].weights[row][colomn] += (float)num;
-}
-
 
 
 Neuron_network &Neuron_network::operator=(const Neuron_network &other) {
