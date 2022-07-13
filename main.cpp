@@ -17,7 +17,7 @@ void XOR_network(){
     };
 
     // Создание и тренировка нейросети
-    Neuron_network XOR(2, 2, 2, 1);
+    Neuron_network XOR(2, 3, 2, 1);
 
     Network_training Training_network(dataset_input, dataset_output, XOR);
     XOR = Training_network.training(100000);
@@ -40,6 +40,6 @@ void XOR_network(){
 int main() {
     srand(time(nullptr));
     XOR_network();
-
     return 0;
 }
+

@@ -127,6 +127,13 @@ Matrix& Matrix::operator=(const Matrix &other) {
         return *this;
     }
 
+    // Удаляем прошлые данные
+    for (int i = 0; i < row; ++i) {
+        delete [] data[i];
+    }
+    delete [] data;
+
+    // Копируем новые значения
     row = other.row;
     colomn = other.colomn;
 
